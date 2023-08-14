@@ -1,5 +1,6 @@
-const express = require("express");
+const api = require("./api");
 
+const express = require("express");
 const server = express();
 
 server.use(express.json());
@@ -48,4 +49,20 @@ server.delete("/product/:id", (req, res) => {
   const newProducts = products.filter((item) => item.id !== parseInt(id));
   products = newProducts;
   return res.send({ products: products });
+});
+
+server.get("/pokemon/:id", async (req, res) => {
+  try {
+    const { id } = req.params; // obtem o ID para enviar para o end point do pokemon
+    const { data } = await api.get(`pokemon/${id}`);
+    return res.send({ name: data.name });
+  } catch (error) {
+    res.status(404); // mudança de status quando houver um erro
+    return res.send({
+      message: error.message,
+      name: error.name,
+      status: error.status,
+      code: error.code,
+    });
+  }
 });

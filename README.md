@@ -31,3 +31,9 @@
 <h3>Creating routes</h3>
 
 - DELETE
+
+<h2>Aula 52</h2>
+
+<h3>Consuming external APIs</h3>
+
+- AXIOS usado para fazer as requisições HTTP
