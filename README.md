@@ -18,10 +18,16 @@
 - query params
 - validade and return name with text portuguese or english
 
-<h2>Aula 49</h2>
+<h2>Aula 50</h2>
 
 <h3>Creating routes</h3>
 
 - GET
 - POST
 - PUT
+
+<h2>Aula 51</h2>
+
+<h3>Creating routes</h3>
+
+- DELETE
