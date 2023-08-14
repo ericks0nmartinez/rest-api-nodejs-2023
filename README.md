@@ -10,3 +10,10 @@
 - .editorconfig para definir configurações padronizadas
 - node index.js - para executar no terminar a aplicação
 - yarn add nodemon - atualização em desenvolvimento
+
+<h2>Aula 49</h2>
+
+<h3>Criando primeira rota</h3>
+
+- query params
+- validade and return name with text portuguese or english
