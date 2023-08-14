@@ -13,7 +13,15 @@
 
 <h2>Aula 49</h2>
 
-<h3>Criando primeira rota</h3>
+<h3>Creating first route</h3>
 
 - query params
 - validade and return name with text portuguese or english
+
+<h2>Aula 49</h2>
+
+<h3>Creating routes</h3>
+
+- GET
+- POST
+- PUT
