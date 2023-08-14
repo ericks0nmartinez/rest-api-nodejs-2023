@@ -1,5 +1,7 @@
-const express = require("express");
+const api = require("./api");
 
+const localStorage = require("localStorage");
+const express = require("express");
 const server = express();
 
 server.use(express.json());
@@ -48,4 +50,41 @@ server.delete("/product/:id", (req, res) => {
   const newProducts = products.filter((item) => item.id !== parseInt(id));
   products = newProducts;
   return res.send({ products: products });
+});
+
+server.get("/pokemon/:id", async (req, res) => {
+  try {
+    const { id } = req.params; // obtem o ID para enviar para o end point do pokemon
+    const { data } = await api.get(`pokemon/${id}`);
+    return res.send({ name: data.name });
+  } catch (error) {
+    res.status(404); // mudança de status quando houver um erro
+    return res.send({
+      message: error.message,
+      name: error.name,
+      status: error.status,
+      code: error.code,
+    });
+  }
+});
+
+const allUsers = [];
+
+function verifyUserAlready(req, res, next) {
+  const { email } = req.body;
+  if (!allUsers.find((user) => user.email === email)) return next();
+
+  return res.status(400).json({ Failed: "This is email alread registed" });
+}
+
+server.post("/users", verifyUserAlready, (req, res) => {
+  const user = req.body;
+  allUsers.push(user);
+  localStorage.setItem("users", JSON.stringify(allUsers));
+  return res.json({ user });
+});
+
+server.get("/users", (req, res) => {
+  const users = JSON.parse(localStorage.getItem("users"));
+  return res.json({ users: users });
 });
