@@ -1,5 +1,6 @@
 const api = require("./api");
 
+const localStorage = require("localStorage");
 const express = require("express");
 const server = express();
 
@@ -65,4 +66,25 @@ server.get("/pokemon/:id", async (req, res) => {
       code: error.code,
     });
   }
+});
+
+const allUsers = [];
+
+function verifyUserAlready(req, res, next) {
+  const { email } = req.body;
+  if (!allUsers.find((user) => user.email === email)) return next();
+
+  return res.status(400).json({ Failed: "This is email alread registed" });
+}
+
+server.post("/users", verifyUserAlready, (req, res) => {
+  const user = req.body;
+  allUsers.push(user);
+  localStorage.setItem("users", JSON.stringify(allUsers));
+  return res.json({ user });
+});
+
+server.get("/users", (req, res) => {
+  const users = JSON.parse(localStorage.getItem("users"));
+  return res.json({ users: users });
 });

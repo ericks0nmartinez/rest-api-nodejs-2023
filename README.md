@@ -36,4 +36,11 @@
 
 <h3>Consuming external APIs</h3>
 
-- AXIOS usado para fazer as requisições HTTP
+- AXIOS usado para fazer as requisições HTTP - yarn add axios
+
+<h2>Aula 53</h2>
+
+<h3>Middleware</h3>
+
+- yarn add localstorage para simular um banco de dados
+- Interceptação da requisição para validar as informações para direcionar uma ação.
